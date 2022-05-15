@@ -1,2 +1,2 @@
-# pythin-server
+# python-server
 chatbox
