@@ -11,20 +11,20 @@ IP_address = str(sys.argv[1])
 Port = int(sys.argv[2])
 server.connect((IP_address, Port))
 
-while True:
+while True: #try replacing with threads
 
     # maintains a list of possible input streams
-    sockets_list = [sys.stdin, server]
+    sockets_list = [ server]
     read_sockets, write_socket, error_socket = select.select(sockets_list, [], [])
 
     for socks in read_sockets:
         if socks == server:
-            message = socks.recv(2048)
+            message = server.recv(2048)
             print(message)
         else:
             message = sys.stdin.readline()
             server.send(message)
-            sys.stdout.write("<You>")
+            sys.stdout.write("<chilk>")
             sys.stdout.write(message)
             sys.stdout.flush()
 server.close()
